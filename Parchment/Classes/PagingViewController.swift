@@ -21,7 +21,7 @@ open class PagingViewController<T: PagingItem>:
   EMPageViewControllerDelegate where T: Hashable & Comparable {
 
   // MARK: Public Properties
-  
+
   /// The size for each of the menu items. _Default:
   /// .sizeToFit(minWidth: 150, height: 40)_
   public var menuItemSize: PagingMenuItemSize {
@@ -300,12 +300,12 @@ open class PagingViewController<T: PagingItem>:
   /// Creates an instance of `PagingViewController`. You need to call
   /// `select(pagingItem:animated:)` in order to set the initial view
   /// controller before any items become visible.
-  public init() {
+  public init(navigationOrientation: EMPageViewControllerNavigationOrientation = .horizontal) {
     self.options = PagingOptions()
     self.visibleItems = PagingItems(items: [])
     self.sizeCache = PagingSizeCache(options: options)
     self.stateMachine = PagingStateMachine(initialState: .empty)
-    self.pageViewController = EMPageViewController(navigationOrientation: .horizontal)
+    self.pageViewController = EMPageViewController(navigationOrientation: navigationOrientation)
     self.collectionViewLayout = createLayout(layout: menuLayoutClass.self, options: options)
     self.collectionView = UICollectionView(frame: .zero, collectionViewLayout: collectionViewLayout)
     super.init(nibName: nil, bundle: nil)
