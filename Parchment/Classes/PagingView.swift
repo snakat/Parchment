@@ -12,15 +12,17 @@ open class PagingView: UIView {
   public let options: PagingOptions
   public let collectionView: UICollectionView
   public let pageView: UIView
+  public let scrollView: UIScrollView?
   
   /// Creates an instance of `PagingView`.
   ///
   /// - Parameter options: The `PagingOptions` passed into the
   /// `PagingViewController`.
-  public init(options: PagingOptions, collectionView: UICollectionView, pageView: UIView) {
+  public init(options: PagingOptions, collectionView: UICollectionView, pageView: UIView, scrollView: UIScrollView? = nil) {
     self.options = options
     self.collectionView = collectionView
     self.pageView = pageView
+    self.scrollView = scrollView
     super.init(frame: .zero)
   }
   

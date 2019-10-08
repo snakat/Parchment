@@ -309,6 +309,9 @@ open class PagingViewController<T: PagingItem>:
     self.collectionViewLayout = createLayout(layout: menuLayoutClass.self, options: options)
     self.collectionView = UICollectionView(frame: .zero, collectionViewLayout: collectionViewLayout)
     super.init(nibName: nil, bundle: nil)
+    self.pageViewController.onCustomScrollView = { [weak self] in
+      return self?.pagingView.scrollView
+    }
     configureCollectionViewLayout()
     configureStateMachine()
   }
@@ -325,6 +328,9 @@ open class PagingViewController<T: PagingItem>:
     self.collectionViewLayout = createLayout(layout: menuLayoutClass.self, options: options)
     self.collectionView = UICollectionView(frame: .zero, collectionViewLayout: collectionViewLayout)
     super.init(coder: coder)
+    self.pageViewController.onCustomScrollView = { [weak self] in
+      return self?.pagingView.scrollView
+    }
     configureCollectionViewLayout()
     configureStateMachine()
   }

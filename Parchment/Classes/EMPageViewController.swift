@@ -138,11 +138,13 @@ open class EMPageViewController: UIViewController, UIScrollViewDelegate {
     private var isOrientationHorizontal: Bool {
         return self.navigationOrientation == .horizontal
     }
-    
+
     /// The underlying `UIScrollView` responsible for scrolling page views.
     /// - important: Properties should be set with caution to prevent unexpected behavior.
+    open var onCustomScrollView: (() -> UIScrollView?)?
+
     open private(set) lazy var scrollView: UIScrollView = {
-        let scrollView = UIScrollView()
+        let scrollView = self.onCustomScrollView?() ?? UIScrollView()
         scrollView.isPagingEnabled = true
         scrollView.scrollsToTop = false
         scrollView.autoresizingMask = [.flexibleTopMargin, .flexibleRightMargin, .flexibleBottomMargin, .flexibleLeftMargin]
