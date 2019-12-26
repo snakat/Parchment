@@ -527,6 +527,13 @@ open class PagingViewController<T: PagingItem>:
       }
     }, completion: nil)
   }
+
+  public func reloadItems() {
+    if let currentPagingItem = state.currentPagingItem {
+      sizeCache.clear()
+      reloadItems(around: currentPagingItem)
+    }
+  }
   
   // MARK: Private Methods
   
